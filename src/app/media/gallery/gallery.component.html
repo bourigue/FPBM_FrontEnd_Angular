@@ -1,0 +1,28 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="'Gallery'" [items]="['Home','Medias']" [active_item]="'Gallery'">
+      </app-breadcrumb>
+    </div>
+    <!-- Image Gallery -->
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+          <div class="body">
+            <div class="group-2">
+              <div>
+                <img *ngFor="let img of imageObject; let i = index" [src]="img.thumbImage || img.posterImage"
+                  (click)="showLightbox(i)" />
+              </div>
+            </div>
+
+            <!-- ng-image-fullscreen-view  -->
+            <ng-image-fullscreen-view [images]="imageObject" [imageIndex]="currentIndex" [show]="showFlag"
+              (close)="closeEventHandler()"></ng-image-fullscreen-view>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
