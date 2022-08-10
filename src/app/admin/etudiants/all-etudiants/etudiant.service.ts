@@ -10,7 +10,7 @@ import { Etudiant } from './etudiant';
 })
 export class EtudiantService extends UnsubscribeOnDestroyAdapter {
 
-  private readonly API_URL = "assets/data/holidays.json";
+  private readonly API_URL = "http://localhost:8080/etudiants";
   isTblLoading = true;
   dataChange: BehaviorSubject<Etudiant[]> = new BehaviorSubject<Etudiant[]>(
     []
