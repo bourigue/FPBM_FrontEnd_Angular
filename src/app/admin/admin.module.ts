@@ -7,6 +7,8 @@ import { DeleteDialogComponent } from './etudiants/all-etudiants/dialog/delete/d
 @NgModule({
   declarations: [
    
+  
+
   ],
   imports: [CommonModule, AdminRoutingModule],
 })

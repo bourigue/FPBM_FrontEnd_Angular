@@ -35,12 +35,14 @@ import { SharedModule } from "src/app/shared/shared.module";
 import { ComponentsModule } from 'src/app/shared/components/components.module';
 import { DeleteDialogComponent } from './all-etudiants/dialog/delete/delete.component';
 import { FormDialogComponent } from './all-etudiants/dialog/form-dialog/form-dialog.component';
+import { AlllEtudiantComponent } from './alll-etudiant/alll-etudiant.component';
 //import { HolidayRoutingModule } from '../holidays/holidays-routing.module';
 @NgModule({
   declarations: [
     DeleteDialogComponent,
     FormDialogComponent,
-    AllEtudiantsComponent
+    AllEtudiantsComponent,
+    AlllEtudiantComponent
   ],
   imports: [
     CommonModule,

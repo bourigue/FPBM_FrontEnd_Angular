@@ -32,11 +32,7 @@ const routes: Routes = [
     loadChildren: () =>
       import("./accounts/accounts.module").then((m) => m.AccountsModule),
   },
-  {
-    path: "holidays",
-    loadChildren: () =>
-      import("./holidays/holidays.module").then((m) => m.HolidayModule),
-  },
+
   {
     path: "attendance",
     loadChildren: () =>
@@ -45,7 +41,7 @@ const routes: Routes = [
   {
     path: "etudiants",
     loadChildren: () =>
-      import("./etudiants/etudiants.module").then((m) => m.EtudiantsModule),
+      import("./etudiants/Etudiants.module").then((m) => m.EtudiantsModule),
   },
 ];
 
