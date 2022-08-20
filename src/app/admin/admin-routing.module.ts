@@ -8,6 +8,11 @@ const routes: Routes = [
       import("./dashboard/dashboard.module").then((m) => m.DashboardModule),
   },
   {
+    path: "professeur",
+    loadChildren: () =>
+      import("./professeur/professeur.module").then((m) => m.ProfesseurModule),
+  },
+  {
     path: "projects",
     loadChildren: () =>
       import("./projects/projects.module").then((m) => m.ProjectsModule),
@@ -41,7 +46,7 @@ const routes: Routes = [
   {
     path: "etudiants",
     loadChildren: () =>
-      import("./etudiants/Etudiants.module").then((m) => m.EtudiantsModule),
+      import("./etudiants/etudiants.module").then((m) => m.EtudiantsModule),
   },
 ];
 

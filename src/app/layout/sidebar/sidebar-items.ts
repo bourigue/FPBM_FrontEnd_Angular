@@ -57,6 +57,36 @@ export const ROUTES: RouteInfo[] = [
   },
   {
     path: "",
+    title: "Professeur",
+    moduleName: "professeur",
+    iconType: "feather",
+    icon: "users",
+    class: "menu-toggle",
+    groupTitle: false,
+    badge: "",
+    badgeClass: "",
+    role: ["Admin"],
+    submenu: [
+      {
+        path: "/admin/professeur/toutprofesseur",
+
+        title: "ToutProfesseur",
+
+        moduleName: "professeur",
+        iconType: "",
+        icon: "",
+        class: "ml-menu",
+        groupTitle: false,
+        badge: "",
+        badgeClass: "",
+        role: [""],
+        submenu: [],
+      },
+      
+    ],
+  },
+  {
+    path: "",
     title: "MENUITEMS.PROJECTS.TEXT",
     moduleName: "projects",
     iconType: "feather",
@@ -284,7 +314,7 @@ export const ROUTES: RouteInfo[] = [
   {
     path: "",
     title: "Etudiants",
-    moduleName: "etudiants",
+    moduleName: "Etudiant",
     iconType: "feather",
     icon: "edit",
     class: "menu-toggle",
@@ -296,7 +326,7 @@ export const ROUTES: RouteInfo[] = [
       {
         path: "/admin/etudiants/all-etudiants",
         title: "all etudiant",
-        moduleName: "etudiants",
+        moduleName: "Etudiant",
         iconType: "",
         icon: "",
         class: "ml-menu",
@@ -306,19 +336,7 @@ export const ROUTES: RouteInfo[] = [
         role: ["Admin"],
         submenu: [],
       },
-      {
-        path: "/admin/etudiants/alll-etudiants",
-        title: "all etudiant",
-        moduleName: "etudiants",
-        iconType: "",
-        icon: "",
-        class: "ml-menu",
-        groupTitle: false,
-        badge: "",
-        badgeClass: "",
-        role: ["Admin"],
-        submenu: [],
-      },
+      
     ],
   },
   {

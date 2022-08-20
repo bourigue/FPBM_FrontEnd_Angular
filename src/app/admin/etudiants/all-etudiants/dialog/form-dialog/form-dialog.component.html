@@ -17,44 +17,42 @@
         <div class="row">
           <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
             <mat-form-field class="example-full-width" appearance="outline">
-              <mat-label>Holiday Name</mat-label>
-              <input matInput formControlName="hName" required>
-              <mat-icon matSuffix>article</mat-icon>
-              <mat-error *ngIf="holidayForm.get('hName').hasError('required')">
-                Holiday Name is required
+              <mat-label>Etudiant Name</mat-label>
+              <input matInput formControlName="nom" required>
+             
+              <mat-error *ngIf="holidayForm.get('nom').hasError('required')">
+                Name is required
               </mat-error>
             </mat-form-field>
           </div>
           <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
             <mat-form-field class="example-full-width" appearance="outline">
               <mat-label>Date</mat-label>
-              <input matInput [matDatepicker]="picker" formControlName="date">
+              <input matInput [matDatepicker]="picker" formControlName="dateNaissance">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
-              <mat-error *ngIf="holidayForm.get('date').hasError('required')">
-                Please select date
-              </mat-error>
+              
             </mat-form-field>
           </div>
         </div>
         <div class="row">
           <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
             <mat-form-field class="example-full-width" appearance="outline">
-              <mat-label>Location</mat-label>
+              <mat-label>Nom</mat-label>
               <input matInput formControlName="nom" required>
-              <mat-icon matSuffix>place</mat-icon>
+             
               <mat-error *ngIf="holidayForm.get('nom').hasError('required')">
-                Location is required
+                nom is required
               </mat-error>
             </mat-form-field>
           </div>
           <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
             <mat-form-field class="example-full-width" appearance="outline">
-              <mat-label>Shift</mat-label>
+              <mat-label>prenom</mat-label>
               <input matInput formControlName="prenom" required>
-              <mat-icon matSuffix>checklist</mat-icon>
+              
               <mat-error *ngIf="holidayForm.get('prenom').hasError('required')">
-                Shift is required
+                prenom is required
               </mat-error>
             </mat-form-field>
           </div>
@@ -62,30 +60,34 @@
         <div class="row">
             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
               <mat-form-field class="example-full-width" appearance="outline">
-                <mat-label>Location</mat-label>
-                <input matInput formControlName="cin" required>
-                <mat-icon matSuffix>place</mat-icon>
-                <mat-error *ngIf="holidayForm.get('cin').hasError('required')">
-                  Location is required
+                <mat-label>cine</mat-label>
+                <input matInput formControlName="cine" required>
+              
+                <mat-error *ngIf="holidayForm.get('cine').hasError('required')">
+                  cine is required
                 </mat-error>
               </mat-form-field>
             </div>
             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
               <mat-form-field class="example-full-width" appearance="outline">
-                <mat-label>Shift</mat-label>
+                <mat-label>cne</mat-label>
                 <input matInput formControlName="cne" required>
-                <mat-icon matSuffix>checklist</mat-icon>
+                
                 <mat-error *ngIf="holidayForm.get('cne').hasError('required')">
-                  Shift is required
+                  cne is required
                 </mat-error>
               </mat-form-field>
             </div>
           </div>
         <div class="row">
-          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
             <mat-form-field class="example-full-width" appearance="outline">
-              <mat-label>details</mat-label>
-              <textarea matInput formControlName="cin"></textarea>
+              <mat-label>apogge</mat-label>
+              <input matInput formControlName="appogee" required>
+             
+              <mat-error *ngIf="holidayForm.get('appogee').hasError('required')">
+                appogee is required
+              </mat-error>
             </mat-form-field>
           </div>
         </div>

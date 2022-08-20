@@ -26,10 +26,10 @@ export class FormDialogComponent {
     // Set the defaults
     this.action = data.action;
     if (this.action === "edit") {
-      this.dialogTitle = data.holiday.hName;
+      this.dialogTitle = data.holiday.nom;
       this.holiday = data.holiday;
     } else {
-      this.dialogTitle = "New Holiday";
+      this.dialogTitle = "New Etudiant";
       this.holiday = new Etudiant({});
     }
     this.holidayForm = this.createContactForm();
@@ -52,7 +52,8 @@ export class FormDialogComponent {
       prenom: [this.holiday.prenom],
       dateNaissance: [this.holiday.dateNaissance],
       cne: [this.holiday.cne],
-      cin: [this.holiday.cin],
+      cine: [this.holiday.cine],
+      appogee: [this.holiday.appogee],
       
     });
   }
