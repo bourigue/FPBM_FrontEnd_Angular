@@ -6,7 +6,7 @@ export class Etudiant {
     dateNaissance:string;
     appogee:string;
     cne:string;
-    cin:string;
+    cine:string;
 
 
     constructor(Etudiant) {
@@ -16,7 +16,7 @@ export class Etudiant {
           this.prenom = Etudiant.prenom || "";
           this.appogee = Etudiant.appogee || "";
           this.cne = Etudiant.cne || "";
-          this.cin = Etudiant.cne || "";
+          this.cine = Etudiant.cine || "";
           this.dateNaissance = formatDate(new Date(), "yyyy-MM-dd", "en") || "";
          // this.location = Etudiant.location || "";
         

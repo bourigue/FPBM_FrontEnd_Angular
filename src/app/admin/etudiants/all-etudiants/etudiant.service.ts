@@ -10,7 +10,7 @@ import { Etudiant } from './etudiant';
 })
 export class EtudiantService extends UnsubscribeOnDestroyAdapter {
 
-  private readonly API_URL = "http://localhost:8080/etudiants";
+  private readonly API_URL = "http://localhost:8080/etudiant";
   isTblLoading = true;
   dataChange: BehaviorSubject<Etudiant[]> = new BehaviorSubject<Etudiant[]>(
     []
@@ -28,7 +28,7 @@ export class EtudiantService extends UnsubscribeOnDestroyAdapter {
   }
   /** CRUD METHODS */
   getAllHolidays(): void {
-    this.subs.sink = this.httpClient.get<Etudiant[]>(this.API_URL).subscribe(
+    this.subs.sink = this.httpClient.get<Etudiant[]>(this.API_URL+"/alletudiant").subscribe(
       (data) => {
         this.isTblLoading = false;
         this.dataChange.next(data);
@@ -42,33 +42,33 @@ export class EtudiantService extends UnsubscribeOnDestroyAdapter {
   addHoliday(holiday: Etudiant): void {
     this.dialogData = holiday;
 
-    /*  this.httpClient.post(this.API_URL, holiday).subscribe(data => {
+     this.httpClient.post(this.API_URL+"/saveEtudiant", holiday).subscribe(data => {
       this.dialogData = holiday;
       },
       (err: HttpErrorResponse) => {
      // error code here
-    });*/
+    });
   }
   updateHoliday(holiday: Etudiant): void {
     this.dialogData = holiday;
 
-    /* this.httpClient.put(this.API_URL + holiday.id, holiday).subscribe(data => {
+     this.httpClient.put(this.API_URL + "/"+holiday.id, holiday).subscribe(data => {
       this.dialogData = holiday;
     },
     (err: HttpErrorResponse) => {
       // error code here
     }
-  );*/
+  );
   }
   deleteHoliday(id: number): void {
     console.log(id);
 
-    /*  this.httpClient.delete(this.API_URL + id).subscribe(data => {
+      this.httpClient.delete(this.API_URL +"/deleteEtudiant/"+ id).subscribe(data => {
       console.log(id);
       },
       (err: HttpErrorResponse) => {
          // error code here
       }
-    );*/
+    );
   }
 }
