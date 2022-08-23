@@ -11,8 +11,8 @@ import {
 import { ConfigService } from "src/app/config/config.service";
 import { RightSidebarService } from "src/app/core/service/rightsidebar.service";
 import { MatSlideToggleChange } from "@angular/material/slide-toggle";
-import { UnsubscribeOnDestroyAdapter } from "src/app/shared/UnsubscribeOnDestroyAdapter";
 import { DirectionService } from "src/app/core/service/direction.service";
+import { UnsubscribeOnDestroyAdapter } from "src/app/shared/UnsubscribeOnDestroyAdapter";
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,

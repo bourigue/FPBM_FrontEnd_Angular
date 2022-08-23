@@ -20,7 +20,6 @@ import {  merge } from "rxjs";
 })
 export class AllEtudiantsComponent extends UnsubscribeOnDestroyAdapter
 implements OnInit{
-
   displayedColumns = [
     "select",
     "nom",

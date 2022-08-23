@@ -1,5 +1,6 @@
 import { Router, NavigationEnd } from "@angular/router";
 import { DOCUMENT } from "@angular/common";
+
 import {
   Component,
   Inject,
