@@ -12,37 +12,16 @@ const routes: Routes = [
     loadChildren: () =>
       import("./professeur/professeur.module").then((m) => m.ProfesseurModule),
   },
-  {
-    path: "projects",
-    loadChildren: () =>
-      import("./projects/projects.module").then((m) => m.ProjectsModule),
-  },
+ 
   {
     path: "employees",
     loadChildren: () =>
       import("./employees/employees.module").then((m) => m.EmployeesModule),
   },
-  {
-    path: "clients",
-    loadChildren: () =>
-      import("./clients/clients.module").then((m) => m.ClientModule),
-  },
-  {
-    path: "leaves",
-    loadChildren: () =>
-      import("./leaves/leaves.module").then((m) => m.LeavesModule),
-  },
-  {
-    path: "accounts",
-    loadChildren: () =>
-      import("./accounts/accounts.module").then((m) => m.AccountsModule),
-  },
+  
+ 
 
-  {
-    path: "attendance",
-    loadChildren: () =>
-      import("./attendance/attendance.module").then((m) => m.AttendanceModule),
-  },
+  
   {
     path: "etudiants",
     loadChildren: () =>
