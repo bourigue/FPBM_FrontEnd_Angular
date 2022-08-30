@@ -12,6 +12,11 @@ const routes: Routes = [
     loadChildren: () =>
       import("./professeur/professeur.module").then((m) => m.ProfesseurModule),
   },
+  {
+    path: "pv-examen",
+    loadChildren: () =>
+      import("./pv-examen/pv-examen.module").then((m) => m.PvExamenModule),
+  },
  
   {
     path: "employees",
@@ -20,8 +25,6 @@ const routes: Routes = [
   },
   
  
-
-  
   {
     path: "etudiants",
     loadChildren: () =>

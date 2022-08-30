@@ -183,6 +183,19 @@ export const ROUTES: RouteInfo[] = [
       
     ],
   },
+  {
+    path: "/admin/pv-examen/pv-examen",
+    title: "Pv examen",
+    moduleName: "pvexamen",
+    iconType: "feather",
+    icon: "file-text",
+    class: "",
+    groupTitle: false,
+    badge: "",
+    badgeClass: "",
+    role: ["Admin"],
+    submenu: [],
+  },
   
   
 
