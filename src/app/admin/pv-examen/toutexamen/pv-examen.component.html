@@ -1,0 +1,172 @@
+<section class="content">
+    <div class="content-block">
+      <div class="block-header">
+        <!-- breadcrumb -->
+        <app-breadcrumb [title]="'Pv Examen'" [items]="['Examen']" [active_item]="' Examen '">
+        </app-breadcrumb>
+      </div>
+      <div> <input type="file" (change)="selectFile($event)"> <button mat-raised-button color="primary" 
+        (click)="uploadFile()" >upload</button></div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="card">
+            <div class="body">
+              <div class="table-responsive">
+                <div class="materialTableHeader">
+                  <div class="row">
+                    <div class="col-8">
+                      <ul class="header-buttons-left ms-0">
+                        <li class="dropdown">
+                          <h2>Examen pv</h2>
+                        </li>
+                        <li class="dropdown m-l-20">
+                          <label for="search-input"><i class="material-icons search-icon">search</i></label>
+                          <input placeholder="Search" type="text" #filter class="browser-default search-field"
+                            aria-label="Search box">
+                        </li>
+                       
+                        <li>
+                          <div class="m-l-10" matTooltip="REFRESH">
+                            <button mat-mini-fab color="primary" (click)="refresh()">
+                              <mat-icon class="col-white">actualiser</mat-icon>
+                            </button>
+                          </div>
+                        </li>
+                        
+                      </ul>
+                    </div>
+                    <div class="col-4">
+                      <ul class="header-buttons">
+                        <li>
+                          <div class="export-button m-l-10" matTooltip="XLSX">
+                            <img src="assets/images/icons/xlsx.png" alt=""
+                              (click)="exporter.exportTable('xlsx', {fileName:'assets-list', sheet: 'sheet1'})" />
+                          </div>
+                        </li>
+                        <li>
+                          <div class="export-button m-l-10" matTooltip="CSV">
+                            <img src="assets/images/icons/csv.png" alt="" (click)="exporter.exportTable('csv')" />
+                          </div>
+                        </li>
+                        <li>
+                          <div class="export-button m-l-10" matTooltip="JSON">
+                            <img src="assets/images/icons/json.png" alt="" (click)="exporter.exportTable('json')" />
+                          </div>
+                        </li>
+                        <li>
+                          <div class="export-button m-l-10" matTooltip="TXT">
+                            <img src="assets/images/icons/txt.png" alt="" (click)="exporter.exportTable('txt')" />
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <mat-table #table matTableExporter [dataSource]="dataSource" matSort class="mat-cell"
+                  #exporter="matTableExporter">
+                 
+                  <!-- ID Column -->
+                  <ng-container matColumnDef="id">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
+                  </ng-container>
+                  
+                  <ng-container matColumnDef="local">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>local </mat-header-cell>
+                    <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"> {{row.local}}</mat-cell>
+                  </ng-container>
+                  <ng-container matColumnDef="module">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>module</mat-header-cell>
+                    <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"> {{row.module}}</mat-cell>
+                  </ng-container>
+                  <ng-container matColumnDef="filiere">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>filiere</mat-header-cell>
+                    <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"> {{row.filiere}}</mat-cell>
+                  </ng-container>
+                  <ng-container matColumnDef="semestre">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>semestre</mat-header-cell>
+                    <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"> {{row.semestre}}
+                    </mat-cell>
+                  </ng-container>
+                  <ng-container matColumnDef="heure">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>heure</mat-header-cell>
+                    <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"> {{row.heure}}</mat-cell>
+                  </ng-container>
+                  <ng-container matColumnDef="responsableModule">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>responsableModule</mat-header-cell>
+                    <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"> {{row.responsableModule}}</mat-cell>
+                  </ng-container>
+                 
+                 
+                  <ng-container matColumnDef="pdf">
+                    <mat-header-cell class="pr-0" *matHeaderCellDef>Actions</mat-header-cell>
+                    <mat-cell *matCellDef="let row"  (contextmenu)="onContextMenu($event, row)">
+                      <button mat-icon-button color="accent" (click)="generatePDF(row.pdf)"
+                       >
+                        generate
+                      </button>
+                     
+                    </mat-cell>
+                  </ng-container>
+                  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                  <!-- <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row> -->
+                  <mat-row *matRowDef="let row; columns: displayedColumns;" 
+                    [style.cursor]="'pointer'" matRipple>
+                  </mat-row>
+          
+                </mat-table>
+                <!-- Loading spinner -->
+                <div *ngIf="exampleDatabase.isTblLoading" class="tbl-spinner">
+                  <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
+                  </mat-progress-spinner>
+                </div>
+                <!-- context menu start -->
+                <div style="visibility: hidden; position: fixed" [style.left]="contextMenuPosition.x"
+                  [style.top]="contextMenuPosition.y" [matMenuTriggerFor]="contextMenu">
+                </div>
+                <mat-menu #contextMenu="matMenu">
+                  <ng-template matMenuContent let-item="item">
+                   
+                    <button mat-menu-item (click)="refresh()">
+                      <mat-icon>refresh</mat-icon>
+                      <span>Refresh Record</span>
+                    </button>
+                    <button mat-menu-item disabled>
+                      <mat-icon>no_encryption</mat-icon>
+                      <span>Disable</span>
+                    </button>
+                    <button mat-menu-item [matMenuTriggerFor]="nestedmenu">
+                      <mat-icon>list_alt</mat-icon>
+                      <span> Nested Menu</span>
+                    </button>
+                  </ng-template>
+                </mat-menu>
+                <mat-menu #nestedmenu="matMenu">
+                  <button mat-menu-item>
+                    <mat-icon>mail_outline</mat-icon>
+                    <span>Item 1</span>
+                  </button>
+                  <button mat-menu-item>
+                    <mat-icon>call</mat-icon>
+                    <span>Item 2</span>
+                  </button>
+                  <button mat-menu-item>
+                    <mat-icon>chat</mat-icon>
+                    <span>Item 3</span>
+                  </button>
+                </mat-menu>
+                <!-- context menu end -->
+                <div *ngIf="!exampleDatabase.isTblLoading" class="no-results"
+                  [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
+                  No results
+                </div>
+                <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10"
+                  [pageSizeOptions]="[5, 10, 25, 100]">
+                </mat-paginator>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
