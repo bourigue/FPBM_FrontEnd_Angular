@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Page404Component } from 'src/app/authentication/page404/page404.component';
+import { PvetudiantComponent } from './pvetudiant/pvetudiant.component';
 import { PvExamenComponent } from './toutexamen/pv-examen.component';
 
 
@@ -9,8 +10,12 @@ import { PvExamenComponent } from './toutexamen/pv-examen.component';
     {
       path: "pv-examen",
       component: PvExamenComponent
-      ,
-    },
+      
+     },
+     { path: "pvetudiant",
+      component: PvetudiantComponent
+      },
+    
  
    // {
       //path: "u-employee",

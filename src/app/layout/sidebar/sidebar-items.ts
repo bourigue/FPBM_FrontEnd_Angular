@@ -184,20 +184,48 @@ export const ROUTES: RouteInfo[] = [
     ],
   },
   {
-    path: "/admin/pv-examen/pv-examen",
+    path: "",
     title: "Pv examen",
     moduleName: "pvexamen",
     iconType: "feather",
-    icon: "file-text",
-    class: "",
+    icon: "edit",
+    class: "menu-toggle",
     groupTitle: false,
     badge: "",
     badgeClass: "",
     role: ["Admin"],
-    submenu: [],
+    submenu: [
+      {
+        path: "/admin/pv-examen/pv-examen",
+        title: "Pv examen",
+        moduleName: "pvexamen",
+        iconType: "feather",
+        icon: "file-text",
+        class: "",
+        groupTitle: false,
+        badge: "",
+        badgeClass: "",
+        role: ["Admin"],
+        submenu: [],
+      },
+          
+      {
+        path: "/admin/pv-examen/pvetudiant",
+        title: "Pv Etudiants",
+        moduleName: "pvexamen",
+        iconType: "",
+        icon: "",
+        class: "ml-menu",
+        groupTitle: false,
+        badge: "",
+        badgeClass: "",
+        role: ["Admin"],
+        submenu: [],
+      },
+      
+    ],
   },
-  
-  
+ 
 
   // Employee Modules
   {
