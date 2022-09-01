@@ -34,7 +34,7 @@ export class PvExamenComponent extends UnsubscribeOnDestroyAdapter implements On
   param:any ;
   pdf:any;
   file:any;
-  fileUploadUrl="http://localhost:8080/professeur/importToDb"
+  fileUploadUrl="http://localhost:8080/examCalender"
  
   constructor(
     public httpClient: HttpClient,
