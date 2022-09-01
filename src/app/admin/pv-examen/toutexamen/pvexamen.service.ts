@@ -1,6 +1,6 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
 import { Pvexamen } from './pvexamen';
 
@@ -45,6 +45,11 @@ export class PvexamenService extends UnsubscribeOnDestroyAdapter {
         console.log(error.name + " " + error.message);
       }
     );
+  }
+  getParamettre(id:number):any{
+    let header = new HttpHeaders();
+    header.append("Access-Control-Allow-Origin","http://localhost:4200");
+    return this.httpClient.post<Pvexamen>("http://localhost:8080/pvById/"+id,{headers: header});
   }
  
   
