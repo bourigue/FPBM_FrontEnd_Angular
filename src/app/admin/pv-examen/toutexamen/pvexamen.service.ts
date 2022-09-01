@@ -8,7 +8,7 @@ import { Pvexamen } from './pvexamen';
   providedIn: 'root'
 })
 export class PvexamenService extends UnsubscribeOnDestroyAdapter {
-  private readonly API_URL = "http://localhost:8080/b2Paies";
+  private readonly API_URL = "http://localhost:8080/pvs";
   isTblLoading = true;
   dataChange: BehaviorSubject<Pvexamen[]>=new BehaviorSubject<Pvexamen[]>(
     []
@@ -26,13 +26,13 @@ export class PvexamenService extends UnsubscribeOnDestroyAdapter {
  
   
   /** CRUD METHODS */
-  getAllparam(username){
+  getAllparam(){
    
-    return this.httpClient.get<Pvexamen[]>(this.API_URL+"/bulletin/"+username);
+    return this.httpClient.get<Pvexamen[]>(this.API_URL);
   }
   getAllparamettre(){
    
-    this.subs.sink = this.httpClient.get<Pvexamen[]>(this.API_URL+"/bulletin/").subscribe(
+    this.subs.sink = this.httpClient.get<Pvexamen[]>(this.API_URL).subscribe(
       (data) => {
         this.isTblLoading = false;
         this.dataChange.next(data);
