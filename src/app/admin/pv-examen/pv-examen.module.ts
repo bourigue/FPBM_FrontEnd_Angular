@@ -25,11 +25,13 @@ import { ComponentsModule } from 'src/app/shared/components/components.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PvExamenComponent } from './toutexamen/pv-examen.component';
 import { PvexamenService } from './toutexamen/pvexamen.service';
+import { PvetudiantComponent } from './pvetudiant/pvetudiant.component';
 
 
 @NgModule({
   declarations: [
-    PvExamenComponent
+    PvExamenComponent,
+    PvetudiantComponent
   ],
   imports: [
     CommonModule,

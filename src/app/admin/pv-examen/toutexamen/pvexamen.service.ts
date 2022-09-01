@@ -30,6 +30,11 @@ export class PvexamenService extends UnsubscribeOnDestroyAdapter {
    
     return this.httpClient.get<Pvexamen[]>(this.API_URL);
   }
+  
+  getEtudiantPv(cine:any){
+    return  this.httpClient.get<Pvexamen[]>("http://localhost:8080/pv/"+cine);
+   
+  }
   getAllparamettre(){
    
     this.subs.sink = this.httpClient.get<Pvexamen[]>(this.API_URL).subscribe(
