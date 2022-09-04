@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 import { Pvexamen } from '../toutexamen/pvexamen';
 import { PvexamenService } from '../toutexamen/pvexamen.service';
 
@@ -30,8 +32,22 @@ export class PvetudiantComponent {
    
     });
   }
+  public openPDF(): void {
+    let DATA: any = document.getElementById('test');
+    html2canvas(DATA).then((canvas) => {
+      let fileWidth = 208;
+      let fileHeight = (canvas.height * fileWidth) / canvas.width;
+      const FILEURI = canvas.toDataURL('image/png');
+      let PDF = new jsPDF('p', 'mm', 'a4');
+      let position = 0;
+      PDF.addImage(FILEURI, 'PNG', 0, 5, fileWidth, fileHeight);
+      PDF.save('angular-demo.pdf');
+    });
+  }
   onSubmit() {
    
     console.log("Form Value", this.docForm.value);
   }
 }
+
+

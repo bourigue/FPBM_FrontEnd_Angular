@@ -34,15 +34,16 @@
               </form>
 
             </div>
-            <div class="row clearfix">
+            <div class="row clearfix" id="test" >
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                  <div class="card">
                     <div >
                         <h3 style="text-align:center;">Convocation d'examen</h3><br>
-                        <h3 style="margin: 20px; ">CINE:</h3>
+                        <h3 style="margin: 20px; ">CINE:{{cin}}</h3>
                         
           
                     </div>
+                  <div class="card">
+                  
                     
                     <div class="body table-responsive">
                       <table class="table">
@@ -75,6 +76,9 @@
                     </div>
                   </div>
                 </div>
+              </div>
+              <div class="col-md-4 text-right">
+                <button class="btn btn-success btn-block" (click)="openPDF()">Download PDF</button>
               </div>
           </div>
         </div>
