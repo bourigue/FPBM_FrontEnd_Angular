@@ -32,7 +32,8 @@ export class PvexamenService extends UnsubscribeOnDestroyAdapter {
   }
   
   getEtudiantPv(cine:any){
-    return  this.httpClient.get<Pvexamen[]>("http://localhost:8080/pv/"+cine);
+
+    return  this.httpClient.post<Pvexamen[]>("http://localhost:8080/pv/"+cine,{});
    
   }
   getAllparamettre(){

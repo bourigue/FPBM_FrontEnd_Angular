@@ -11,6 +11,7 @@ import { Pvexamen } from './pvexamen';
 import { PvexamenService } from './pvexamen.service';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import {number} from "echarts/core";
 
 @Component({
   selector: 'app-pv-examen',
@@ -19,6 +20,7 @@ import html2canvas from 'html2canvas';
 })
 export class PvExamenComponent extends UnsubscribeOnDestroyAdapter implements OnInit {
   displayedColumns = [
+    "date",
     "local",
     "module",
     "filiere",
@@ -38,6 +40,9 @@ export class PvExamenComponent extends UnsubscribeOnDestroyAdapter implements On
   param:any ;
   pdf:any;
   file:any;
+  localQR:string;
+  moduleQR:string;
+  ordre=[];
   fileUploadUrl="http://localhost:8080/examCalender";
   // @ts-ignore
 
@@ -58,6 +63,8 @@ export class PvExamenComponent extends UnsubscribeOnDestroyAdapter implements On
   contextMenu: MatMenuTrigger;
   contextMenuPosition = { x: "0px", y: "0px" };
   ngOnInit(): void {
+    this.localQR="";
+    this.moduleQR="";
     //this.PvPdf=null;
     this.loadData();
   }
@@ -84,17 +91,20 @@ export class PvExamenComponent extends UnsubscribeOnDestroyAdapter implements On
       }
     )
   }
-  public openPDF(): void {
-    let DATA: any = document.getElementById('test');
-    html2canvas(DATA).then((canvas) => {
-      let fileWidth = 208;
-      let fileHeight = (canvas.height * fileWidth) / canvas.width;
-      const FILEURI = canvas.toDataURL('image/png');
-      let PDF = new jsPDF('p', 'mm', 'a4');
-      let position = 0;
-      PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
-      PDF.save('angular-demo.pdf');
-    });
+  openPDF() {
+        let DATA: any = document.getElementById('test');
+        html2canvas(DATA).then((canvas) => {
+          let fileWidth = 208;
+          let fileHeight = (canvas.height * fileWidth) / canvas.width;
+          const FILEURI = canvas.toDataURL('image/png');
+          let PDF = new jsPDF('p', 'mm', 'a4');
+          let position = 0;
+          PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
+          PDF.save('angular-demo.pdf');
+        });
+
+
+
   }
 
   private refreshTable() {
@@ -126,19 +136,23 @@ export class PvExamenComponent extends UnsubscribeOnDestroyAdapter implements On
   }
 
   generate(id:number) {
-     this.paramettreService.getParamettre(id).subscribe(response =>{
-       this.PvPdf=response;
-     });
-    let DATA: any = document.getElementById('test');
-    html2canvas(DATA).then((canvas) => {
-      let fileWidth = 208;
-      let fileHeight = (canvas.height * fileWidth) / canvas.width;
-      const FILEURI = canvas.toDataURL('image/png');
-      let PDF = new jsPDF('p', 'mm', 'a4');
-      let position = 0;
-      PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
-      PDF.save('angular-demo.pdf');
-    });
+    try {
+      this.paramettreService.getParamettre(id).subscribe(async(response) =>{
+        this.PvPdf=await response;
+        this.ordre.splice(0);
+        for (var i = this.PvPdf.de; i < this.PvPdf.jusqua; i++) {
+          this.ordre.push(i);
+        }
+        console.log(this.ordre);
+
+      });
+    } catch (e) {
+      console.log(e);
+    }
+    //this.ordre=this.PvPdf.jusqua;
+    console.log("test:" + this.PvPdf?.local);
+    this.localQR=this.PvPdf?.local;
+    this.moduleQR=this.PvPdf?.module;
 
 
   }

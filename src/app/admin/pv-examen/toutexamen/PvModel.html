@@ -1,69 +1,54 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Pv</title>
-</head>
-<body>
-<div class="container" id="test-pdf">
+<div class="container" id="test">
     <div class="row">
         <div class="text-center">
-            <p><strong>A.U:</strong> .....
+            <p><strong>A.U:</strong> 2022/2023
             <p>FICHE D'ABSENECE</p>
-            <p><strong>Filiere: </strong>.....</p>
-            <p><strong>Haure: </strong>.....</p>
+            <p id="filiere"><strong>Filiere: </strong>{{PvPdf?.filiere}}</p>
+            <p><strong>Heure: </strong>{{PvPdf?.heure}}</p>
             <p><strong>Durée: </strong>.....</p>
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-6">
-            <p><strong>Semestre: </strong>.....</p>
-            <p><strong>Date: </strong>.....</p>
-            <p><strong>Local: </strong>.....</p>
-            <p>QR code</p>
+        <div class="col-lg-10 col-md-10">
+            <p><strong style="margin-left: 5px;">Semestre: </strong>{{PvPdf?.semestre}}</p>
+            <p><strong style="margin-left: 5px;">Date: </strong>{{PvPdf?.date}}</p>
+            <p><strong style="margin-left: 5px;">Local: </strong>{{PvPdf?.local}}</p>
+            <qrcode [qrdata]="PvPdf?.local" [width]="100" [errorCorrectionLevel]="'M'"></qrcode>
+
         </div>
-        <div class="col-lg-6">
-            <p><strong>Module: </strong>.....</p>
-            <p>QR code</p>
+        <div class="col-lg-2 col-md-2">
+            <p><strong>Module: </strong>{{PvPdf?.module}}</p>
+            <qrcode [qrdata]="PvPdf?.module" [width]="100" [errorCorrectionLevel]="'M'"></qrcode>
         </div>
     </div>
-    <p><strong>Nombre de présents: </strong>.....</p>
-    <p><strong>Nombre d'absents: </strong>.....</p>
-    <p>Liste des étudiants:</p>
+    <p><strong style="margin-left: 5px;">Nombre de présents: </strong>.....</p>
+    <p><strong style="margin-left: 5px;">Nombre d'absents: </strong>.....</p>
+    <p style="margin-left: 5px;">Liste des étudiants:</p>
 
     <table class="table">
         <thead>
         <tr>
             <th scope="col">Ordre</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prenom</th>
+            <th scope="col">Date Naissance</th>
+            <th scope="col">Appogee</th>
+            <th scope="col">CINE</th>
+            <th scope="col">CNE</th>
         </tr>
         </thead>
-        <tbody>
-        <tr>
+        <tbody >
+        <tr *ngFor="let etudiant of PvPdf?.etudiants ">
             <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
+            <td>{{etudiant?.nom}}</td>
+            <td>{{etudiant?.prenom}}</td>
+            <td>{{etudiant?.dateNaissance}}</td>
+            <td>{{etudiant?.appogee}}</td>
+            <td>{{etudiant?.cine}}</td>
+            <td>{{etudiant?.cne}}</td>
         </tr>
         </tbody>
     </table>
 
 
 </div>
-
-
-</body>
-</html>
