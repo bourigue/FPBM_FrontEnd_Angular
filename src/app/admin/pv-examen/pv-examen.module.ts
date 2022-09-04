@@ -26,6 +26,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { PvExamenComponent } from './toutexamen/pv-examen.component';
 import { PvexamenService } from './toutexamen/pvexamen.service';
 import { PvetudiantComponent } from './pvetudiant/pvetudiant.component';
+import {QRCodeModule} from "angularx-qrcode";
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { PvetudiantComponent } from './pvetudiant/pvetudiant.component';
     MatProgressSpinnerModule,
     ComponentsModule,
     SharedModule,
-    PvExamenRoutingModule
+    PvExamenRoutingModule,
+    QRCodeModule,
   ],
   providers: [PvexamenService],
 })

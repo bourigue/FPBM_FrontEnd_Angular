@@ -32,6 +32,7 @@ import {
 } from "@angular/common/http";
 
 import { LoadingBarRouterModule } from "@ngx-loading-bar/router";
+import {QRCodeModule} from "angularx-qrcode";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -70,6 +71,7 @@ export function createTranslateLoader(http: HttpClient): any {
     // core & shared
     CoreModule,
     SharedModule,
+    QRCodeModule,
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
