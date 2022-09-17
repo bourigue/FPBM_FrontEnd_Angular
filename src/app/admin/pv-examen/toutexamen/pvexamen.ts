@@ -35,3 +35,12 @@ export class etudiant{
     cne: string;
     cine: string;
 }
+export class Ordre{
+    id:number;
+    ordre:number;
+
+    constructor(id: number, ordre: number) {
+        this.id = id;
+        this.ordre = ordre;
+    }
+}

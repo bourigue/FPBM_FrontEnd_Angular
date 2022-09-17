@@ -21,7 +21,7 @@ const users: User[] = [
     firstName: "Sarah",
     lastName: "Smith",
     role: Role.Admin,
-    token: "admin-token",
+    access_token: "admin-token",
   },
   {
     id: 2,
@@ -31,7 +31,7 @@ const users: User[] = [
     firstName: "Ashton",
     lastName: "Cox",
     role: Role.Employee,
-    token: "employee-token",
+    access_token: "employee-token",
   },
   {
     id: 3,
@@ -41,7 +41,7 @@ const users: User[] = [
     firstName: "Cara",
     lastName: "Stevens",
     role: Role.Client,
-    token: "client-token",
+    access_token: "client-token",
   },
 ];
 
@@ -82,7 +82,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         firstName: user.firstName,
         lastName: user.lastName,
         role: user.role,
-        token: user.token,
+        token: user.access_token,
       });
     }
 

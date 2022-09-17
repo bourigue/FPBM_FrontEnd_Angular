@@ -25,7 +25,7 @@ export const ROUTES: RouteInfo[] = [
     groupTitle: false,
     badge: "",
     badgeClass: "",
-    role: ["Admin"],
+    role: ["All"],
     submenu: [
       {
         path: "/admin/dashboard/main",
@@ -65,7 +65,7 @@ export const ROUTES: RouteInfo[] = [
     groupTitle: false,
     badge: "",
     badgeClass: "",
-    role: ["Admin"],
+    role: ["All"],
     submenu: [
       {
         path: "/admin/professeur/toutprofesseur",
@@ -96,7 +96,7 @@ export const ROUTES: RouteInfo[] = [
     groupTitle: false,
     badge: "",
     badgeClass: "",
-    role: ["Admin"],
+    role: ["All"],
     submenu: [
       {
         path: "/admin/employees/allEmployees",
@@ -165,7 +165,7 @@ export const ROUTES: RouteInfo[] = [
     groupTitle: false,
     badge: "",
     badgeClass: "",
-    role: ["Admin"],
+    role: ["All"],
     submenu: [
       {
         path: "/admin/etudiants/all-etudiants",
@@ -182,6 +182,32 @@ export const ROUTES: RouteInfo[] = [
       },
       
     ],
+  },
+  {
+    path: "/admin/pv-examen/pv-examen",
+    title: "Pv examen",
+    moduleName: "pvexamen",
+    iconType: "feather",
+    icon: "file-text",
+    class: "",
+    groupTitle: false,
+    badge: "",
+    badgeClass: "",
+    role: ["All"],
+    submenu: [],
+  },
+  {
+    path: "/admin/pv-examen/pvetudiant",
+    title: "Pv Etudiants",
+    moduleName: "pvexamen",
+    iconType: "feather",
+    icon: "file-text",
+    class: "",
+    groupTitle: false,
+    badge: "",
+    badgeClass: "",
+    role: ["All"],
+    submenu: [],
   },
   {
     path: "",
