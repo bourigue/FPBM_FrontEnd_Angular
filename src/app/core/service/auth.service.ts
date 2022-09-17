@@ -13,7 +13,9 @@ export class AuthService {
   public currentUser: Observable<User>;
 
   constructor(private http: HttpClient) {
+      localStorage.removeItem("currentUser");
     this.currentUserSubject = new BehaviorSubject<User>(
+
       JSON.parse(localStorage.getItem("currentUser"))
     );
     this.currentUser = this.currentUserSubject.asObservable();
@@ -24,20 +26,31 @@ export class AuthService {
   }
 
   login(username: string, password: string) {
+    let info={
+      "username": username,
+      "password": password,
+    }
+    // @ts-ignore
     return this.http
-      .post<any>(`${environment.apiUrl}/authenticate`, {
-        username,
-        password,
-      })
-      .pipe(
-        map((user) => {
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
+        .post<User>("http://localhost:8080/login",JSON.stringify(info))
+        .pipe(
+            map((user) => {
+              // store user details and jwt token in local storage to keep user logged in between page refreshes
+              localStorage.setItem("role",user.role[0]['authority'])
+                console.log(user.role[0]['authority'])
+                localStorage.setItem("username",user.username)
 
-          localStorage.setItem("currentUser", JSON.stringify(user));
-          this.currentUserSubject.next(user);
-          return user;
-        })
-      );
+              localStorage.setItem("token",user.access_token)
+                console.log(user.access_token);
+              // @ts-ignore
+                localStorage.setItem("currentUser", JSON.stringify(user));
+              this.currentUserSubject.next(user);
+              return user;
+
+
+            },)
+        );
+
   }
 
   logout() {

@@ -7,7 +7,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { BehaviorSubject, fromEvent, map, merge, Observable } from 'rxjs';
 import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
-import { Pvexamen } from './pvexamen';
+import {Ordre, Pvexamen} from './pvexamen';
 import { PvexamenService } from './pvexamen.service';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
@@ -42,7 +42,8 @@ export class PvExamenComponent extends UnsubscribeOnDestroyAdapter implements On
   file:any;
   localQR:string;
   moduleQR:string;
-  ordre=[];
+  ordre:Ordre | null;
+  //ordre=[];
   fileUploadUrl="http://localhost:8080/examCalender";
   // @ts-ignore
 
@@ -91,6 +92,20 @@ export class PvExamenComponent extends UnsubscribeOnDestroyAdapter implements On
       }
     )
   }
+
+  getOrdreByEtudiantPv(idEtud:number, idPv:number){
+    return this.paramettreService.getOrdreByEtudiantPv(idEtud, idPv);
+  }
+  getOrdreByEtudiant(idEtud:number, idPv:number):any{
+    this.paramettreService.getOrdreByEtudiantPv(idEtud, idPv).toPromise().then(response => {
+      console.log(response);
+      return response;
+
+    });
+  }
+
+
+
   openPDF() {
         let DATA: any = document.getElementById('test');
         html2canvas(DATA).then((canvas) => {
@@ -139,11 +154,6 @@ export class PvExamenComponent extends UnsubscribeOnDestroyAdapter implements On
     try {
       this.paramettreService.getParamettre(id).subscribe(async(response) =>{
         this.PvPdf=await response;
-        this.ordre.splice(0);
-        for (var i = this.PvPdf.de; i < this.PvPdf.jusqua; i++) {
-          this.ordre.push(i);
-        }
-        console.log(this.ordre);
 
       });
     } catch (e) {

@@ -2,7 +2,7 @@ import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
-import { Pvexamen } from './pvexamen';
+import {Ordre, Pvexamen} from './pvexamen';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +35,9 @@ export class PvexamenService extends UnsubscribeOnDestroyAdapter {
 
     return  this.httpClient.post<Pvexamen[]>("http://localhost:8080/pv/"+cine,{});
    
+  }
+  getOrdreByEtudiantPv(idEtud:number,idPv:number){
+    return  this.httpClient.get("http://localhost:8080/ordre/"+idEtud+"/"+idPv);
   }
   getAllparamettre(){
    

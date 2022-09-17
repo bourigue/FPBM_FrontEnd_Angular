@@ -222,8 +222,8 @@
       </tr>
       </thead>
       <tbody >
-      <tr *ngFor="let etudiant of PvPdf?.etudiants;let ord=index">
-        <th scope="row">{{ordre[ord]}}</th>
+      <tr *ngFor="let etudiant of PvPdf?.etudiants;">
+        <th scope="row">{{getOrdreByEtudiant(etudiant.id,PvPdf.id)}}</th>
         <td>{{etudiant?.nom}}</td>
         <td>{{etudiant?.prenom}}</td>
         <td>{{etudiant?.dateNaissance}}</td>

@@ -62,8 +62,9 @@ export class SigninComponent
           (res) => {
             if (res) {
               setTimeout(() => {
-                const role = this.authService.currentUserValue.role;
+                const role = localStorage.getItem("role");
                 if (role === Role.All || role === Role.Admin) {
+                  console.log("admin is here")
                   this.router.navigate(["/admin/dashboard/main"]);
                 } else if (role === Role.Employee) {
                   this.router.navigate(["/employee/dashboard"]);
