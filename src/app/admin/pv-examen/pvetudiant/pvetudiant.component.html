@@ -34,7 +34,7 @@
               </form>
 
             </div>
-            <div class="row clearfix" id="test" >
+            <div class="row clearfix" id="test" *ngIf="isHidden">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div >
                         <h3 style="text-align:center;">Convocation d'examen</h3><br>
@@ -49,24 +49,25 @@
                       <table class="table">
                         <thead>
                           <tr>
-                            <th>date</th>
-                            <th>filiere</th>
-                            <th>semestre</th>
-                            <th>module</th>
-                            <th>heure</th>
-                            <th>responsableModule</th>
-                            <th>local</th>
+                            <th>Ordre</th>
+                            <th>Date</th>
+                            <th>Filiere</th>
+                            <th>Semestre</th>
+                            <th>Module</th>
+                            <th>Heure</th>
+                            <th>Responsable de Module</th>
+                            <th>Local</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr *ngFor="let data of param">
-                            
+                            <td>{{data.ordre}}</td>
                             <td>{{data.date}}</td>
                             <td>{{data.filiere}}</td>
                             <td>{{data.semestre}}</td>
                             <td>{{data.module}}</td>
                             <td>{{data.heure}}</td>
-                            <td>{{data.responsableModule}}</td>
+                            <td>Prof {{data.responsableModule}}</td>
                             <td>{{data.local}}</td>
 
                           </tr>

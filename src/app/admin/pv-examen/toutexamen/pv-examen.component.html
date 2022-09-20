@@ -182,7 +182,7 @@
       </div>
     </div>
 
-  <div class="container" id="test">
+  <div class="container" id="test" *ngIf="isHidden">
     <div class="row">
       <div class="text-center">
         <p><strong>A.U:</strong> 2022/2023
@@ -222,8 +222,8 @@
       </tr>
       </thead>
       <tbody >
-      <tr *ngFor="let etudiant of PvPdf?.etudiants;">
-        <th scope="row">{{getOrdreByEtudiant(etudiant.id,PvPdf.id)}}</th>
+      <tr *ngFor="let etudiant of etds;">
+        <th scope="row">{{etudiant?.ordre}}</th>
         <td>{{etudiant?.nom}}</td>
         <td>{{etudiant?.prenom}}</td>
         <td>{{etudiant?.dateNaissance}}</td>
