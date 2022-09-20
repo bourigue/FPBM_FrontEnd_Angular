@@ -9,6 +9,7 @@ export class Pvexamen {
     de:number;
     jusqua: number;
     responsableModule: string;
+    ordre:string;
     etudiants: etudiant[];
 
 
@@ -34,6 +35,7 @@ export class etudiant{
     appogee: string;
     cne: string;
     cine: string;
+    ordre:any;
 }
 export class Ordre{
     id:number;

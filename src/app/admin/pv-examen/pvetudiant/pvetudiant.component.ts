@@ -15,8 +15,10 @@ export class PvetudiantComponent {
   docForm: UntypedFormGroup;
   hide3 = true;
   agree3 = false;
-  param:any;
+  param:Pvexamen[];
   cin:any;
+  isHidden= false;
+
   
   constructor(private fb: UntypedFormBuilder,public paramettreService: PvexamenService) {
     this.docForm = this.fb.group({
@@ -24,11 +26,12 @@ export class PvetudiantComponent {
     });
   }
   getetudiantPv(){
+    this.isHidden=true;
     console.log(this.docForm.value.cine);
     this.cin=this.docForm.value.cine;
     this.paramettreService.getEtudiantPv(this.cin).subscribe(data=>{
       this.param=data;
-      console.log(data);
+      console.log(this.param);
    
     });
   }
@@ -43,6 +46,7 @@ export class PvetudiantComponent {
       PDF.addImage(FILEURI, 'PNG', 0, 5, fileWidth, fileHeight);
       PDF.save('angular-demo.pdf');
     });
+    this.isHidden=false;
   }
   onSubmit() {
    

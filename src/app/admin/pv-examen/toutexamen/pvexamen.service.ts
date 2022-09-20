@@ -1,8 +1,9 @@
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject, Observable, Subscription} from 'rxjs';
 import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
-import {Ordre, Pvexamen} from './pvexamen';
+import { Etudiant } from '../../etudiants/all-etudiants/etudiant';
+import {etudiant, Ordre, Pvexamen} from './pvexamen';
 
 @Injectable({
   providedIn: 'root'
@@ -33,11 +34,13 @@ export class PvexamenService extends UnsubscribeOnDestroyAdapter {
   
   getEtudiantPv(cine:any){
 
-    return  this.httpClient.post<Pvexamen[]>("http://localhost:8080/pv/"+cine,{});
+    return  this.httpClient.get<Pvexamen[]>("http://localhost:8080/pv/"+cine,{});
    
   }
   getOrdreByEtudiantPv(idEtud:number,idPv:number){
-    return  this.httpClient.get("http://localhost:8080/ordre/"+idEtud+"/"+idPv);
+    return  this.httpClient.get<string>("http://localhost:8080/ordre/"+idEtud+"/"+idPv).subscribe(data => {
+
+    });
   }
   getAllparamettre(){
    
@@ -59,6 +62,11 @@ export class PvexamenService extends UnsubscribeOnDestroyAdapter {
     let header = new HttpHeaders();
     header.append("Access-Control-Allow-Origin","http://localhost:4200");
     return this.httpClient.post<Pvexamen>("http://localhost:8080/pvById/"+id,{headers: header});
+  }
+  getStudents(id:number):any{
+    let header = new HttpHeaders();
+    header.append("Access-Control-Allow-Origin","http://localhost:4200");
+    return this.httpClient.get<etudiant[]>("http://localhost:8080/ordre1/"+id,{headers: header});
   }
  
   

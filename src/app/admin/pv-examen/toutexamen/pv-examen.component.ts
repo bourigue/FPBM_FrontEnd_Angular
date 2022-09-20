@@ -7,11 +7,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { BehaviorSubject, fromEvent, map, merge, Observable } from 'rxjs';
 import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
-import {Ordre, Pvexamen} from './pvexamen';
+import {etudiant, Ordre, Pvexamen} from './pvexamen';
 import { PvexamenService } from './pvexamen.service';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
-import {number} from "echarts/core";
 
 @Component({
   selector: 'app-pv-examen',
@@ -43,6 +42,9 @@ export class PvExamenComponent extends UnsubscribeOnDestroyAdapter implements On
   localQR:string;
   moduleQR:string;
   ordre:Ordre | null;
+  ord:any;
+  isHidden= false;
+  etds:etudiant[];
   //ordre=[];
   fileUploadUrl="http://localhost:8080/examCalender";
   // @ts-ignore
@@ -93,20 +95,19 @@ export class PvExamenComponent extends UnsubscribeOnDestroyAdapter implements On
     )
   }
 
-  getOrdreByEtudiantPv(idEtud:number, idPv:number){
-    return this.paramettreService.getOrdreByEtudiantPv(idEtud, idPv);
-  }
-  getOrdreByEtudiant(idEtud:number, idPv:number):any{
-    this.paramettreService.getOrdreByEtudiantPv(idEtud, idPv).toPromise().then(response => {
-      console.log(response);
-      return response;
+  getOrdreByEtudiantPv(idEtud:number, idPv:number):any{
+    return this.httpClient.get<string>("http://localhost:8080/ordre/"+idEtud+"/"+idPv);
 
-    });
+  }
+  getOrdreByEtudiant(idEtud:number, idPv:number){
+    console.log(this.paramettreService.getOrdreByEtudiantPv(idEtud, idPv))
+    return this.paramettreService.getOrdreByEtudiantPv(idEtud, idPv);
   }
 
 
 
   openPDF() {
+    
         let DATA: any = document.getElementById('test');
         html2canvas(DATA).then((canvas) => {
           let fileWidth = 208;
@@ -117,6 +118,8 @@ export class PvExamenComponent extends UnsubscribeOnDestroyAdapter implements On
           PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
           PDF.save('angular-demo.pdf');
         });
+
+        this.isHidden=false;
 
 
 
@@ -151,21 +154,26 @@ export class PvExamenComponent extends UnsubscribeOnDestroyAdapter implements On
   }
 
   generate(id:number) {
-    try {
-      this.paramettreService.getParamettre(id).subscribe(async(response) =>{
-        this.PvPdf=await response;
 
+      this.paramettreService.getParamettre(id).subscribe(async(response) =>{
+        this.PvPdf= await response;
+        console.log(response);
       });
-    } catch (e) {
-      console.log(e);
-    }
-    //this.ordre=this.PvPdf.jusqua;
     console.log("test:" + this.PvPdf?.local);
     this.localQR=this.PvPdf?.local;
     this.moduleQR=this.PvPdf?.module;
+    this.isHidden=true;
+    this.paramettreService.getStudents(id).subscribe(response=>{
+      this.etds=response;
+    })
+
+    
+    
 
 
   }
+
+
 }
 export class ExampleDataSource extends DataSource<Pvexamen> {
   id:any;
