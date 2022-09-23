@@ -182,16 +182,27 @@
       </div>
     </div>
 
-  <div class="container" id="test" *ngIf="isHidden">
+  <div class="container" id="test" *ngIf="isHidden" style="padding: 2% 8%;">
+    <div class="row">
+      <div class="col-lg-11 col-md-11">
+        <img src="assets/images/fpbm.png" class="rounded float-left" width="20%">
+      </div>
+      <div class="col-lg-1 col-md-1">
+        <img src="assets/images/usms.jpg" class="rounded float-right" width="210%">
+      </div>
+    </div>
+      
+    
     <div class="row">
       <div class="text-center">
         <p><strong>A.U:</strong> 2022/2023
-        <p>FICHE D'ABSENECE</p>
+        <p><strong>FICHE D'ABSENECE</strong></p>
         <p id="filiere"><strong>Filiere: </strong>{{PvPdf?.filiere}}</p>
         <p><strong>Heure: </strong>{{PvPdf?.heure}}</p>
         <p><strong>Durée: </strong>.....</p>
       </div>
     </div>
+    
     <div class="row">
       <div class="col-lg-10 col-md-10">
         <p><strong style="margin-left: 5px;">Semestre: </strong>{{PvPdf?.semestre}}</p>
@@ -207,9 +218,28 @@
     </div>
     <p><strong style="margin-left: 5px;">Nombre de présents: </strong>.....</p>
     <p><strong style="margin-left: 5px;">Nombre d'absents: </strong>.....</p>
-    <p style="margin-left: 5px;">Liste des étudiants:</p>
 
-    <table class="table">
+    <p style="margin-left: 5px;" class="text-center"><strong>Liste des surveillants:</strong></p>
+    <table id="surveillants">
+      <thead>
+      <tr>
+        <th scope="col">Nom</th>
+        <th scope="col">Prenom</th>
+        <th scope="col">Signature</th>
+      </tr>
+      </thead>
+      <tbody >
+      <tr *ngFor="let surveillant of PvPdf?.surveillants">
+        <td>{{surveillant?.nom}}</td>
+        <td>{{surveillant?.prenom}}</td>
+        <td></td>
+      </tr>
+      </tbody>
+    </table>
+  
+    <p style="margin-left: 5px;" class="text-center"><strong>Liste des étudiants:</strong></p>
+
+    <table id="etudiants" >
       <thead>
       <tr>
         <th scope="col">Ordre</th>
@@ -219,6 +249,7 @@
         <th scope="col">Appogee</th>
         <th scope="col">CINE</th>
         <th scope="col">CNE</th>
+        <th scope="col">Absent(e)</th>
       </tr>
       </thead>
       <tbody >
@@ -230,6 +261,7 @@
         <td>{{etudiant?.appogee}}</td>
         <td>{{etudiant?.cine}}</td>
         <td>{{etudiant?.cne}}</td>
+        <td></td>
       </tr>
       </tbody>
     </table>

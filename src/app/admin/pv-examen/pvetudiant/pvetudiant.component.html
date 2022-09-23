@@ -20,7 +20,7 @@
                       <mat-label>CINE</mat-label>
                       <input matInput formControlName="cine" required>
                       <mat-error *ngIf="docForm.get('cine').hasError('required')">
-                        First name is required
+                        CINE est obligatoire
                       </mat-error>
                     </mat-form-field>
                   </div>
@@ -30,15 +30,30 @@
                     <button type="button" mat-button>Cancel</button>
                   </div>
                 </div>
+                <div class="col-md-4 text-right">
+                  <button class="btn btn-success btn-block" (click)="openPDF()">Download PDF</button>
+                </div>
              
               </form>
 
             </div>
-            <div class="row clearfix" id="test" *ngIf="isHidden">
+            <div class="row clearfix" id="test" *ngIf="isHidden" style="padding: 2% 8%;">
+              <div class="row">
+                <div class="col-lg-11 col-md-11">
+                  <img src="assets/images/fpbm.png" class="rounded float-left" width="20%">
+                </div>
+                <div class="col-lg-1 col-md-1">
+                  <img src="assets/images/usms.jpg" class="rounded float-right" width="210%">
+                </div>
+              </div>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div >
-                        <h3 style="text-align:center;">Convocation d'examen</h3><br>
-                        <h3 style="margin: 20px; ">CINE:{{cin}}</h3>
+                        <h3 style="text-align:center;">Convocation d'Examen</h3><br>
+                        <p>Nom: {{etudiant?.nom}}</p>
+                        <p>Prénom: {{etudiant?.prenom}}</p>
+                        <p>CINE: {{cin}}</p>
+                        <p>La Date de Naissance: {{etudiant?.dateNaissance}}</p>
+                        
                         
           
                     </div>
@@ -46,7 +61,7 @@
                   
                     
                     <div class="body table-responsive">
-                      <table class="table">
+                      <table class="table" id="etudiants">
                         <thead>
                           <tr>
                             <th>Ordre</th>
@@ -77,9 +92,6 @@
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-md-4 text-right">
-                <button class="btn btn-success btn-block" (click)="openPDF()">Download PDF</button>
               </div>
           </div>
         </div>

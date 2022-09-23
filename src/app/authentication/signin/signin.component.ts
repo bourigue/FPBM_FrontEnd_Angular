@@ -63,7 +63,7 @@ export class SigninComponent
             if (res) {
               setTimeout(() => {
                 const role = localStorage.getItem("role");
-                if (role === Role.All || role === Role.Admin) {
+                if (role === Role.All || role === Role.Admin || role===Role.Etudiant) {
                   console.log("admin is here")
                   this.router.navigate(["/admin/dashboard/main"]);
                 } else if (role === Role.Employee) {
