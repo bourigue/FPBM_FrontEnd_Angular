@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
-import { Pvexamen } from '../toutexamen/pvexamen';
+import { etudiant, Pvexamen } from '../toutexamen/pvexamen';
 import { PvexamenService } from '../toutexamen/pvexamen.service';
 
 @Component({
@@ -18,6 +18,7 @@ export class PvetudiantComponent {
   param:Pvexamen[];
   cin:any;
   isHidden= false;
+  etudiant:etudiant;
 
   
   constructor(private fb: UntypedFormBuilder,public paramettreService: PvexamenService) {
@@ -31,9 +32,15 @@ export class PvetudiantComponent {
     this.cin=this.docForm.value.cine;
     this.paramettreService.getEtudiantPv(this.cin).subscribe(data=>{
       this.param=data;
-      console.log(this.param);
+      console.log(this.param['etudiants']);
    
     });
+    this.paramettreService.getEtudiant(this.cin).subscribe(response=>{
+      this.etudiant=response;
+      console.log("etudiant:",this.etudiant);
+      
+    })
+
   }
   public openPDF(): void {
     let DATA: any = document.getElementById('test');
@@ -44,7 +51,8 @@ export class PvetudiantComponent {
       let PDF = new jsPDF('p', 'mm', 'a4');
       let position = 0;
       PDF.addImage(FILEURI, 'PNG', 0, 5, fileWidth, fileHeight);
-      PDF.save('angular-demo.pdf');
+      let namePDF=this.etudiant.nom+' '+this.etudiant.prenom
+      PDF.save(namePDF);
     });
     this.isHidden=false;
   }

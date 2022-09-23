@@ -116,7 +116,8 @@ export class PvExamenComponent extends UnsubscribeOnDestroyAdapter implements On
           let PDF = new jsPDF('p', 'mm', 'a4');
           let position = 0;
           PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
-          PDF.save('angular-demo.pdf');
+          let pdfName=this.PvPdf.filiere+' '+this.PvPdf.module+' '+this.PvPdf.local
+          PDF.save(pdfName);
         });
 
         this.isHidden=false;
@@ -163,6 +164,7 @@ export class PvExamenComponent extends UnsubscribeOnDestroyAdapter implements On
     this.localQR=this.PvPdf?.local;
     this.moduleQR=this.PvPdf?.module;
     this.isHidden=true;
+    
     this.paramettreService.getStudents(id).subscribe(response=>{
       this.etds=response;
     })
