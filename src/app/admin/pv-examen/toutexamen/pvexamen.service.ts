@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable, Subscription} from 'rxjs';
 import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
 import { Etudiant } from '../../etudiants/all-etudiants/etudiant';
-import {etudiant, Ordre, Pvexamen} from './pvexamen';
+import {etudiant, Ordre, Pvexamen, surveillant} from './pvexamen';
 
 @Injectable({
   providedIn: 'root'
@@ -68,6 +68,11 @@ export class PvexamenService extends UnsubscribeOnDestroyAdapter {
     let header = new HttpHeaders();
     header.append("Access-Control-Allow-Origin","http://localhost:4200");
     return this.httpClient.post<Pvexamen>("http://localhost:8080/pvById/"+id,{headers: header});
+  }
+  getSurveillants(id:number):any{
+    let header = new HttpHeaders();
+    header.append("Access-Control-Allow-Origin","http://localhost:4200");
+    return this.httpClient.get<surveillant>("http://localhost:8080/surveillantByPv/"+id,{headers: header});
   }
   getStudents(id:number):any{
     let header = new HttpHeaders();

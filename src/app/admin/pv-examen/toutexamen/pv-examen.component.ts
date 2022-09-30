@@ -7,7 +7,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { BehaviorSubject, fromEvent, map, merge, Observable } from 'rxjs';
 import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
-import {etudiant, Ordre, Pvexamen} from './pvexamen';
+import {etudiant, Ordre, Pvexamen, surveillant} from './pvexamen';
 import { PvexamenService } from './pvexamen.service';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
@@ -35,6 +35,7 @@ export class PvExamenComponent extends UnsubscribeOnDestroyAdapter implements On
   id: number;
   paramettre: Pvexamen | null;
   PvPdf:Pvexamen|null;
+  surveillants:surveillant;
   Selectedparamettre: Pvexamen | null;
   param:any ;
   pdf:any;
@@ -167,6 +168,9 @@ export class PvExamenComponent extends UnsubscribeOnDestroyAdapter implements On
     
     this.paramettreService.getStudents(id).subscribe(response=>{
       this.etds=response;
+    });
+    this.paramettreService.getSurveillants(id).subscribe((response)=>{
+      this.surveillants=response;
     })
 
     
