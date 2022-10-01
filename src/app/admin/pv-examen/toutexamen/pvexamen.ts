@@ -61,3 +61,15 @@ export class surveillant{
         this.disponible=disponible;
     }
 }
+export class Statistic{
+    nbEtudiants:number;
+    nbProf:number;
+    nbSalle:number;
+    nbFiliere:number;
+    constructor(nbEtudiants:number,nbProf:number,nbSalle:number,nbFiliere:number){
+        this.nbEtudiants=nbEtudiants;
+        this.nbProf=nbProf;
+        this.nbSalle=nbSalle;
+        this.nbFiliere=nbFiliere;
+    }
+}

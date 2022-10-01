@@ -1,3 +1,4 @@
+import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import {
   ChartComponent,
@@ -16,6 +17,7 @@ import {
   ApexTitleSubtitle,
   ApexResponsive,
 } from "ng-apexcharts";
+import { Statistic } from "../../pv-examen/toutexamen/pvexamen";
 export type ChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
@@ -41,6 +43,7 @@ export type ChartOptions = {
   styleUrls: ["./main.component.scss"],
 })
 export class MainComponent implements OnInit {
+  statistic:Statistic;
   public cardChart1: any;
   public cardChart1Data: any;
   public cardChart1Label: any;
@@ -77,8 +80,11 @@ export class MainComponent implements OnInit {
     responsive: true,
   };
 
-  constructor() {}
+  constructor(private http:HttpClient) {}
   ngOnInit() {
+    this.http.get<Statistic>("http://localhost:8080/etudiant/nbEtudiants").subscribe(response=>{
+      this.statistic=response;
+    })
     this.smallChart1();
     this.smallChart2();
     this.smallChart3();

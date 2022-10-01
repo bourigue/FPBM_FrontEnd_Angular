@@ -100,6 +100,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
     }
   }
   ngOnInit() {
+    this.userFullName=localStorage.getItem("username");
+    this.userType=localStorage.getItem("role");
     if (this.authService.currentUserValue) {
       const userRole = this.authService.currentUserValue.role;
       this.userFullName =
@@ -125,6 +127,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     // this.sidebarItems = ROUTES.filter((sidebarItem) => sidebarItem);
     this.initLeftSidebar();
     this.bodyTag = this.document.body;
+    this.userFullName=localStorage.getItem("username");
   }
   ngOnDestroy() {
     this.routerObj.unsubscribe();
